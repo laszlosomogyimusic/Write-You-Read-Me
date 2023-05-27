@@ -8,28 +8,44 @@ const fileName = "./generated_files/README-generated.md";
 const questions = [
   {
     type: 'input',
-    name: 'name',
-    message: 'What is your name?',
+    name: 'projectname',
+    message: 'What is the project name?',
   },
   {
-    type: 'checkbox',
-    message: 'What languages do you know?',
-    name: 'stack',
-    choices: ['HTML', 'CSS', 'JavaScript', 'MySQL'],
+    type: 'input',
+    name: 'description',
+    message: 'Please describe the project in few sentences',
   },
   {
-    type: 'list',
-    message: 'What is your preferred method of communication?',
-    name: 'contact',
-    choices: ['email', 'phone', 'telekinesis'],
+    type: 'input',
+    name: 'install',
+    message: 'Please write down the install process',
   },
+  {
+    type: 'input',
+    name: 'usage',
+    message: 'Please explain how to use the software',
+  },
+  // {
+  //   type: 'list',
+  //   message: 'What license do you use?',
+  //   name: 'contact',
+  //   choices: ['MIT', 'GNU', 'telekinesis'],
+  // },
+  // {
+  //   type: 'checkbox',
+  //   message: 'What languages do you know?',
+  //   name: 'stack',
+  //   choices: ['HTML', 'CSS', 'JavaScript', 'MySQL'],
+  // },
+
 ];
 
 // function to write README file
 function writeToFile(fileName, data) {
   console.log(`${data.name} ${data.stack} ${data.contact}`);
 
-  fs.writeFile(fileName, JSON.stringify(data, null, '\t'), (err) =>
+  fs.writeFile(fileName, data, (err) =>
   err ? console.log(err) : console.log('Success!')
   );
 }
@@ -38,7 +54,8 @@ function writeToFile(fileName, data) {
 function init() {
   inquirer.prompt(questions)
   .then((answers) => {
-    writeToFile(fileName, answers);
+    let fullText = generateMarkdown(answers);
+    writeToFile(fileName, fullText);
   }
   ); 
 }
