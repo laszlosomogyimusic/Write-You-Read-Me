@@ -23,6 +23,9 @@ Open up a console, and run the following command:
 node index.js
 ```
 
+## Mockup / Usage Video
+[![Write You Read Me Video](https://img.youtube.com/vi/QyTyqLco3aM/default.jpg)](https://www.youtube.com/watch?v=QyTyqLco3aM)
+
 ## Generated file
 The README file is generated to the *generated_files* subfolder
 ```bash
