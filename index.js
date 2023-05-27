@@ -26,12 +26,12 @@ const questions = [
     name: 'usage',
     message: 'Please explain how to use the software',
   },
-  // {
-  //   type: 'list',
-  //   message: 'What license do you use?',
-  //   name: 'contact',
-  //   choices: ['MIT', 'GNU', 'telekinesis'],
-  // },
+  {
+    type: 'list',
+    message: 'What license do you use?',
+    name: 'license',
+    choices: ['MIT', 'GNU', 'telekinesis'],
+  },
   // {
   //   type: 'checkbox',
   //   message: 'What languages do you know?',
