@@ -2,6 +2,7 @@ const fs = require("fs");
 const path = require('path');
 const inquirer = require("inquirer");
 const generateMarkdown = require("./utils/generateMarkdown");
+
 const fileName = "./generated_files/README-generated.md";
 
 // array of questions for user
@@ -30,8 +31,20 @@ const questions = [
     type: 'list',
     message: 'What license do you use?',
     name: 'license',
-    choices: ['MIT', 'GNU', 'telekinesis'],
+    choices: ['MIT', 'GNU GPL v3', 'Apache 2.0'],
   },
+  {
+    type: 'input',
+    name: 'contributing',
+    message: 'Please list all the contributors here',
+  },
+  {
+    type: 'input',
+    name: 'tests',
+    message: 'Please explain the tests here',
+  },
+
+
   // {
   //   type: 'checkbox',
   //   message: 'What languages do you know?',

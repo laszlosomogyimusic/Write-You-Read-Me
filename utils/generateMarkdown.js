@@ -1,14 +1,38 @@
 let fullText = "";
 
-function generateTitle(title) {
-  let temp = `# ${title}
 
-`;
+function generateTitle(title, license) {
+  let licenseBadge = "";
+  let licenseURL = "";
+
+  switch (license) {
+    case 'Apache 2.0':
+      licenseURL = "https://opensource.org/licenses/Apache-2.0";
+      licenseBadge = `[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](${licenseURL})`;
+      break;
+    case 'GNU GPL v3':
+      licenseURL = "https://www.gnu.org/licenses/gpl-3.0";
+      licenseBadge = `[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](${licenseURL})`;
+      break;
+    case 'MIT':
+      licenseURL = "https://opensource.org/licenses/MIT";
+      licenseBadge = `[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](${licenseURL})`;
+      break;
+    default:
+      licenseURL = "https://opensource.org/licenses/MIT";
+      licenseBadge = `[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](${licenseURL})`;
+      break;
+  }
+
+  let temp = `# ${title} ${licenseBadge}
+  
+  `;
+
   fullText += temp;
 }
 
 function generateDescription(description) {
-  let temp = `## Description [![made-with-javascript](https://img.shields.io/badge/Made%20with-JavaScript-1f425f.svg)](https://www.javascript.com)
+  let temp = `## Description 
 ${description}
 
 `;
@@ -16,21 +40,10 @@ ${description}
   fullText += temp;
 }
 
-function generateLicense(license) {
-  let temp = `## License [![Npm package license](https://badgen.net/npm/llicense/discord.js)](https://npmjs.com/package/discord.js)
-
-${license}
-
-`;
-
-  fullText += temp;
-}
-
-
 
 function generateTableOfContents() {
   let temp = `## Table Of Contents
-* [Description](#description)
+* [Description](#Description)
 * [Installation](#installation)
 * [Usage](#usage)
 * [License](#license)
@@ -48,7 +61,7 @@ ${install}
 
 `;
 
-fullText += temp;
+  fullText += temp;
 }
 
 
@@ -63,22 +76,52 @@ ${usage}
   fullText += temp;
 }
 
+function generateLicense(license) {
+  let temp = `## License
+This software is using ${license} license. 
+Please click on the badge on the top line to read more about it. 
+
+`;
+
+  fullText += temp;
+}
+
+function generateContributing(contributing) {
+  let temp = `## Contributing
+${contributing}
+
+`;
+
+  fullText += temp;
+}
+
+function generateTests(tests) {
+  let temp = `## Tests
+${tests}
+
+`;
+
+  fullText += temp;
+}
+
+
 
 // function to generate markdown for README
 function generateMarkdown(data) {
-  console.log(data);
-  generateTitle(data.projectname);
-  generateDescription(data.description);
+  generateTitle(data.projectname, data.license);
   generateTableOfContents();
+  generateDescription(data.description);
   generateInstall(data.install);
   generateUsage(data.usage);
   generateLicense(data.license);
+  generateContributing(data.contributing);
+  generateTests(data.tests);
 
   return fullText;
 
-//   return `# ${data.title}
+  //   return `# ${data.title}
 
-// `;
+  // `;
 }
 
 module.exports = generateMarkdown;
