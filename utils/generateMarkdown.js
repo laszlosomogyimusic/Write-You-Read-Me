@@ -43,10 +43,13 @@ ${description}
 
 function generateTableOfContents() {
   let temp = `## Table Of Contents
-* [Description](#Description)
+* [Description](#description)
 * [Installation](#installation)
 * [Usage](#usage)
 * [License](#license)
+* [Contributing](#contributing)
+* [Tests](#tests)
+* [Questions](#questions)
 
 `;
 
@@ -104,7 +107,15 @@ ${tests}
   fullText += temp;
 }
 
+function generateQuestions(email, githubrepo) {
+  let temp = `## Questions
+* For further questions you can reach me here: ${email}
+* This is my GitHub repository: [${githubrepo}](https://github.com/${githubrepo})
 
+`;
+
+  fullText += temp;
+}
 
 // function to generate markdown for README
 function generateMarkdown(data) {
@@ -116,12 +127,9 @@ function generateMarkdown(data) {
   generateLicense(data.license);
   generateContributing(data.contributing);
   generateTests(data.tests);
+  generateQuestions(data.email, data.githubrepo);
 
   return fullText;
-
-  //   return `# ${data.title}
-
-  // `;
 }
 
 module.exports = generateMarkdown;
